@@ -1,0 +1,146 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Block/Exit_Teleport.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player_Enemy/Player_02.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Block/Enter_Teleport.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player_Enemy/NPC_Map_1_0.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://Tools/Key.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Map/Map_3_0.gd" type="Script" id=7]
+[ext_resource path="res://White32x32.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 527, 31 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 79, 23 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( 47, 491, 143, 489, 141, 336, 38, 331 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( 724, 424, 725, 489, 790, 489, 790, 425 )
+
+[sub_resource type="OccluderPolygon2D" id=5]
+polygon = PoolVector2Array( 535, 1, 496, 28, 518, 62, 553, 61, 572, 21 )
+
+[sub_resource type="OccluderPolygon2D" id=6]
+polygon = PoolVector2Array( -212, 63, -210, 109, -62, 112, -56, 63 )
+
+[node name="Map_3_0" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="White32X32" type="Sprite" parent="."]
+scale = Vector2( 9999, 9999 )
+texture = ExtResource( 8 )
+
+[node name="Teleport" type="Node2D" parent="."]
+
+[node name="Enter_Teleport" parent="Teleport" instance=ExtResource( 3 )]
+position = Vector2( 92, 413 )
+
+[node name="Exit_Teleport" parent="Teleport/Enter_Teleport" instance=ExtResource( 1 )]
+position = Vector2( 0, -387 )
+
+[node name="Enter_Teleport2" parent="Teleport" instance=ExtResource( 3 )]
+position = Vector2( 913, 53 )
+
+[node name="Exit_Teleport" parent="Teleport/Enter_Teleport2" instance=ExtResource( 1 )]
+position = Vector2( 338, 349 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 510, 542 )
+scale = Vector2( 5000, 1 )
+shape = SubResource( 1 )
+
+[node name="Icon" type="Sprite" parent="StaticBody2D/CollisionShape2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -0.0126, 2 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 491, 171 )
+scale = Vector2( 5000, 1 )
+shape = SubResource( 1 )
+
+[node name="Icon2" type="Sprite" parent="StaticBody2D/CollisionShape2D2"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0.0026, -2 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 173.0
+margin_top = 386.0
+margin_right = 224.0
+margin_bottom = 400.0
+text = "Map 3.1"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 172.0
+margin_top = 44.0
+margin_right = 223.0
+margin_bottom = 58.0
+text = "Map 3.2"
+
+[node name="Label3" type="Label" parent="."]
+margin_left = -159.0
+margin_top = 78.0
+margin_right = -108.0
+margin_bottom = 92.0
+text = "Next map"
+
+[node name="Next_Map" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Next_Map"]
+position = Vector2( -135, 88 )
+shape = SubResource( 2 )
+
+[node name="Save_Map" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Save_Map"]
+position = Vector2( 478, 305 )
+shape = SubResource( 2 )
+
+[node name="NPC_Map_1_0" parent="." instance=ExtResource( 4 )]
+position = Vector2( 756, 459 )
+
+[node name="Key" parent="." instance=ExtResource( 6 )]
+position = Vector2( 535, 37 )
+
+[node name="Player_02" parent="." instance=ExtResource( 2 )]
+position = Vector2( 492, 230 )
+
+[node name="Shadow" type="Node2D" parent="."]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Shadow"]
+position = Vector2( 1158, -7 )
+occluder = SubResource( 3 )
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Shadow"]
+position = Vector2( 817, -358 )
+occluder = SubResource( 3 )
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="Shadow"]
+position = Vector2( 0, -383 )
+occluder = SubResource( 3 )
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Shadow"]
+occluder = SubResource( 3 )
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="Shadow"]
+occluder = SubResource( 4 )
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="Shadow"]
+occluder = SubResource( 5 )
+
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="Shadow"]
+occluder = SubResource( 6 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.627451, 0.196078, 0.196078, 1 )
+
+[connection signal="body_entered" from="Next_Map" to="." method="_on_Next_Map_body_entered"]
+[connection signal="body_exited" from="Save_Map" to="." method="_on_Save_Map_body_exited"]
+[connection signal="body_entered" from="Key" to="." method="_on_Key_body_entered"]
